@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TjansterRouteImport } from './routes/tjanster'
+import { Route as ReferenserRouteImport } from './routes/referenser'
+import { Route as OmOssRouteImport } from './routes/om-oss'
+import { Route as MedarbetareRouteImport } from './routes/medarbetare'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as ForsakringsskadorRouteImport } from './routes/forsakringsskador'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TjansterRoute = TjansterRouteImport.update({
+  id: '/tjanster',
+  path: '/tjanster',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReferenserRoute = ReferenserRouteImport.update({
+  id: '/referenser',
+  path: '/referenser',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OmOssRoute = OmOssRouteImport.update({
+  id: '/om-oss',
+  path: '/om-oss',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedarbetareRoute = MedarbetareRouteImport.update({
+  id: '/medarbetare',
+  path: '/medarbetare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForsakringsskadorRoute = ForsakringsskadorRouteImport.update({
+  id: '/forsakringsskador',
+  path: '/forsakringsskador',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/forsakringsskador': typeof ForsakringsskadorRoute
+  '/kontakt': typeof KontaktRoute
+  '/medarbetare': typeof MedarbetareRoute
+  '/om-oss': typeof OmOssRoute
+  '/referenser': typeof ReferenserRoute
+  '/tjanster': typeof TjansterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forsakringsskador': typeof ForsakringsskadorRoute
+  '/kontakt': typeof KontaktRoute
+  '/medarbetare': typeof MedarbetareRoute
+  '/om-oss': typeof OmOssRoute
+  '/referenser': typeof ReferenserRoute
+  '/tjanster': typeof TjansterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/forsakringsskador': typeof ForsakringsskadorRoute
+  '/kontakt': typeof KontaktRoute
+  '/medarbetare': typeof MedarbetareRoute
+  '/om-oss': typeof OmOssRoute
+  '/referenser': typeof ReferenserRoute
+  '/tjanster': typeof TjansterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/forsakringsskador'
+    | '/kontakt'
+    | '/medarbetare'
+    | '/om-oss'
+    | '/referenser'
+    | '/tjanster'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/forsakringsskador'
+    | '/kontakt'
+    | '/medarbetare'
+    | '/om-oss'
+    | '/referenser'
+    | '/tjanster'
+  id:
+    | '__root__'
+    | '/'
+    | '/forsakringsskador'
+    | '/kontakt'
+    | '/medarbetare'
+    | '/om-oss'
+    | '/referenser'
+    | '/tjanster'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ForsakringsskadorRoute: typeof ForsakringsskadorRoute
+  KontaktRoute: typeof KontaktRoute
+  MedarbetareRoute: typeof MedarbetareRoute
+  OmOssRoute: typeof OmOssRoute
+  ReferenserRoute: typeof ReferenserRoute
+  TjansterRoute: typeof TjansterRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tjanster': {
+      id: '/tjanster'
+      path: '/tjanster'
+      fullPath: '/tjanster'
+      preLoaderRoute: typeof TjansterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/referenser': {
+      id: '/referenser'
+      path: '/referenser'
+      fullPath: '/referenser'
+      preLoaderRoute: typeof ReferenserRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/om-oss': {
+      id: '/om-oss'
+      path: '/om-oss'
+      fullPath: '/om-oss'
+      preLoaderRoute: typeof OmOssRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medarbetare': {
+      id: '/medarbetare'
+      path: '/medarbetare'
+      fullPath: '/medarbetare'
+      preLoaderRoute: typeof MedarbetareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forsakringsskador': {
+      id: '/forsakringsskador'
+      path: '/forsakringsskador'
+      fullPath: '/forsakringsskador'
+      preLoaderRoute: typeof ForsakringsskadorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +177,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ForsakringsskadorRoute: ForsakringsskadorRoute,
+  KontaktRoute: KontaktRoute,
+  MedarbetareRoute: MedarbetareRoute,
+  OmOssRoute: OmOssRoute,
+  ReferenserRoute: ReferenserRoute,
+  TjansterRoute: TjansterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
